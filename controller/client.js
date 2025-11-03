@@ -1,8 +1,8 @@
 const modelClient = require('../modal/client')
 const GetClient = async (req, res) => {
     try {
-        const skip = req.query.skip || 1
-        const limit = req.query.skip || 15
+        const skip = parseInt(req.query.skip) || 1
+        const limit = parseInt(req.query.skip) || 15
         const search = req.query.search || ""
         const count = await modelClient.countDocuments()
         const data = await modelClient.aggregate([
