@@ -4,7 +4,7 @@ const GetClient = async (req, res) => {
         const skip = req.query.skip || 1
         const limit = req.query.skip || 15
         const search = req.query.search || ""
-
+        const count = await modelClient.countDocuments()
         const data = await modelClient.aggregate([
             {
                 $match: {
@@ -18,7 +18,7 @@ const GetClient = async (req, res) => {
         ])
 
         return res.status(200).json({
-            data
+            data, count
         })
     } catch (error) {
         return res.status(500).json({ error })
